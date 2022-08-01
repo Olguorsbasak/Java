@@ -1,0 +1,71 @@
+--EXCEPTION--
+An exception is a problem that occurs during program execution. Exceptions cause abnormal termination of the program. 
+Exception handling is a powerful mechanism that handles runtime errors to maintain normal application flow.
+
+An exception can occur for many different reasons. Some examples:
+- A user has entered invalid data.
+- A file that needs to be opened cannot be found.
+- A network connection has been lost in the middle of communications.
+- Insufficient memory and other issues related to physical resources.
+As you can see, exceptions are caused by user error, programmer error, or physical resource issues. However, a well-written program should handle all possible exceptions.
+
+Exceptions can be caught using a combination of the try and catch keywords.
+A try/catch block is placed around the code that might generate an exception. 
+Syntax:
+******************************
+try {
+  //some code
+} catch (Exception e) {
+  //some code to handle errors
+}
+*******************************
+A catch statement involves declaring the type of exception you are trying to catch. If an exception occurs in the try block, the catch block that follows the try is checked. If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block much as an argument is passed into a method parameter.
+The Exception type can be used to catch all possible exceptions.
+Notice the (Exception e) statement in the catch block - it is used to catch all possible Exceptions.
+A single try block can contain multiple catch blocks that handle different exceptions separately.
+Example:
+********************************
+try {
+  //some code
+} catch (ExceptionType1 e1) {
+  //Catch block
+} catch (ExceptionType2 e2) {
+  //Catch block
+} catch (ExceptionType3 e3) {
+  //Catch block
+}
+***********************************
+All catch blocks should be ordered from most specific to most general. 
+Following the specific exceptions, you can use the Exception type to handle all other exceptions as the last catch.
+
+
+--THREADS--
+Java is a multi-threaded programming language. This means that our program can make optimal use of available resources by running two or more components concurrently, with each component handling a different task.
+You can subdivide specific operations within a single application into individual threads that all run in parallel.
+The following diagram shows the life-cycle of a thread.
+There are two ways to create a thread.
+1. Extend the Thread class
+Inherit from the Thread class, override its run() method, and write the functionality of the thread in the run() method.
+Then you create a new object of your class and call it's start method to run the thread.
+Every Java thread is prioritized to help the operating system determine the order in which to schedule threads. The priorities range from 1 to 10, with each thread defaulting to priority 5. You can set the thread priority with the setPriority() method.
+
+The other way of creating Threads is implementing the Runnable interface.
+Implement the run() method. Then, create a new Thread object, pass the Runnable class to its constructor, and start the Thread by calling the start() method.
+The Thread.sleep() method pauses a Thread for a specified period of time. For example, calling Thread.sleep(1000); pauses the thread for one second. Keep in mind that Thread.sleep() throws an InterruptedException, so be sure to surround it with a try/catch block.
+It may seem that implementing the Runnable interface is a bit more complex than extending from the Thread class. However, implementing the Runnable interface is the preferred way to start a Thread, because it enables you to extend from another class, as well.
+
+There are two exception types, checked and unchecked (also called runtime). The main difference is that checked exceptions are checked when compiled, while unchecked exceptions are checked at runtime.
+As mentioned in our previous lesson, Thread.sleep() throws an InterruptedException. This is an example of a checked exception. Your code will not compile until you've handled the exception.
+***********************************
+
+public class MyClass {
+  public static void main(String[ ] args) {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      //some code
+    }
+  }
+}
+*************************************
+It is good to know the Types of Exceptions because they can help you debug your code faster.
